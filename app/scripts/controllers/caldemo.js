@@ -31,6 +31,7 @@ function CalendarCtrl($scope,$compile) {
       var e = new Date(end).getTime() / 1000;
       var m = new Date(start).getMonth();
       var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
+
       callback(events);
     };
 
@@ -43,9 +44,21 @@ function CalendarCtrl($scope,$compile) {
           {type:'party',title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
         ]
     };
+
+   $scope.alertEventMouseout = function(event,jsEvent,view){
+       $scope.alertMessage = (event.title + ' was mouseOut ');
+     }
+    $scope.alertEventMouseOver = function(event,jsEvent,view){
+         $scope.alertMessage = (event.title + ' was mouseOver');
+    }
+    $scope.alertOnDayClick = function(date,allDay,jsEvent,view){
+       $scope.alertMessage = ("allDay is" + date + "for day" + date);
+    }
     /* alert on eventClick */
+    //TBD http://www.mikesmithdev.com/blog/fullcalendar-event-details-with-bootstrap-modal/
     $scope.alertOnEventClick = function( event, allDay, jsEvent, view ){
         $scope.alertMessage = (event.title + ' was clicked ');
+
        // alert(event.title + 'was clicked');
     };
     /* alert on Drop */
@@ -70,7 +83,7 @@ function CalendarCtrl($scope,$compile) {
       }
     };
     /* add custom event*/
-    $scope.addEvent = function() {
+    $scope.addRemoveEventSource = function() {
       $scope.events.push({
         title: 'Open Sesame',
         start: new Date(y, m, 28),
@@ -111,7 +124,10 @@ function CalendarCtrl($scope,$compile) {
         eventClick: $scope.alertOnEventClick,
         eventDrop: $scope.alertOnDrop,
         eventResize: $scope.alertOnResize,
-        eventRender: $scope.eventRender
+        eventRender: $scope.eventRender,
+        dayClick: $scope.alertOnDayClick,
+        eventMouseover: $scope.alertEventMouseOver,
+        eventMouseout: $scope.alertEventMouseout
       }
     };
 
