@@ -1,32 +1,107 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+<div role="main">
+    <div class="container">
+        <section id="directives-calendar">
+            <div class="page-header">
+                <h1>UI-Calendar</h1>
+            </div>
+            <div class="well">
+                <div class="row-fluid">
+                    <div class="span4">
+                        <h3>What?</h3>
+
+                        <p>Attach Angular objects to a calendar.</p>
+                        <p>Show the data binding between two differnet calendars using the same event sources.</p>
+
+                        <h3>Why?</h3>
+
+                        <p>Why Not?</p>
+
+                        <div class="btn-group calTools">
+                          <button class="btn" ng-click="changeLang()">
+                            {{changeTo}}
+                          </button>
+                          <button class="btn" ng-click="addRemoveEventSource(eventSources,eventSource)">
+                            Toggle Source
+                          </button>
+                          <button type="button" class="btn btn-primary" ng-click="addEvent()">
+                            Add Event
+                          </button>
+                        </div>
+
+                        <ul class="unstyled">
+                            <li ng-repeat="e in events">
+                                <div class="alert alert-info">
+                                    <a class="close" ng-click="remove($index)"><i class="icon-remove"></i></a>
+                                    <b> <input ng-model="e.title"></b>
+                                    {{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="span8">
+                        <tabset>
+                            <tab select="renderCalender(myCalendar1);">
+                              <tab-heading>
+                               <i class="glyphicon glyphicon-bell"></i> Calendar One
+                              </tab-heading>
+                              <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
+                                <h4>{{alertMessage}}</h4>
+                              </div>
+                              <div class="btn-toolbar">
+                                <p class="pull-right lead">Calendar One View Options</p>
+                                <div class="btn-group">
+                                    <button class="btn btn-success" ng-click="changeView('agendaDay', myCalendar1)">AgendaDay</button>
+                                    <button class="btn btn-success" ng-click="changeView('agendaWeek', myCalendar1)">AgendaWeek</button>
+                                    <button class="btn btn-success" ng-click="changeView('month', myCalendar1)">Month</button>
+                                </div>
+                              </div>
+                            <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar"></div>
+                           </tab>
+                           <tab select="renderCalender(myCalendar2);">
+                            <tab-heading>
+                              <i class="glyphicon glyphicon-bell"></i> Calendar Two
+                            </tab-heading>
+                              <div class="alert-success calAlert" ng-show="alertMessage != undefined && alertMessage != ''">
+                                <h4>{{alertMessage}}</h4>
+                              </div>
+                              <div class="btn-toolbar">
+                                <p class="pull-right lead">Calendar Two View Options</p>
+                                <div class="btn-group">
+                                    <button class="btn btn-success" ng-click="changeView('agendaDay', myCalendar2)">AgendaDay</button>
+                                    <button class="btn btn-success" ng-click="changeView('agendaWeek', myCalendar2)">AgendaWeek</button>
+                                    <button class="btn btn-success" ng-click="changeView('month', myCalendar2)">Month</button>
+                                </div>
+                              </div>
+                            <div class="calendar" ng-model="eventSources" calendar="myCalendar2" ui-calendar="uiConfig.calendar"></div>
+                           </tab>
+                           <tab select="renderCalender(myCalendar3);">
+                            <tab-heading>
+                              <i class="glyphicon glyphicon-bell"></i> Calendar Three
+                            </tab-heading>
+                              <div class="alert-success calAlert">
+                                <h4>This calendar uses the extended form</h4>
+                              </div>
+                              <div class="btn-toolbar">
+                                <p class="pull-right lead">Calendar Three View Options</p>
+                                <div class="btn-group">
+                                    <button class="btn btn-success" ng-click="changeView('agendaDay', myCalendar3)">AgendaDay</button>
+                                    <button class="btn btn-success" ng-click="changeView('agendaWeek', myCalendar3)">AgendaWeek</button>
+                                    <button class="btn btn-success" ng-click="changeView('month', myCalendar3)">Month</button>
+                                </div>
+                              </div>
+                            <div class="calendar" ng-model="eventSources2" calendar="myCalendar3" ui-calendar="uiConfig.calendar"></div>
+                           </tab>
+                        </tabset>
+                    </div>
+                </div>
+            </div>
+            <h3>How?</h3>
+
+        </section>
+    </div>
 </div>
-
-<div class="row marketing">
-  <h4>HTML5 Boilerplate {{test}}</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-    {{events}}
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
-
- <div class="panel-body">
-      <div class="alert alert-info">Click on a date to create an event, drag &amp; drop to move events or extend time ranges</div>
-   <div data-full-calendar="{ events: demoEvents }"></div>
-  </div>
 
 
 

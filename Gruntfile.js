@@ -164,7 +164,10 @@ module.exports = function (grunt) {
       bowerInstall: {
         app: {
           src: ['<%= yeoman.app %>/index.html'],
-          ignorePath: '<%= yeoman.app %>/'
+          ignorePath: '<%= yeoman.app %>/',
+          exclude: [
+             // 'fullcalendar.js'
+          ]
         }
       },
     // Renames files for browser caching purposes
